@@ -1,0 +1,1 @@
+const{ipcRenderer}=require("electron");window.services={ping:()=>new Promise((e=>{let n;ipcRenderer.once("pong",(o=>{clearTimeout(n),e()}));const o=()=>{n=setTimeout((()=>{ipcRenderer.sendTo(window.translateWindowWebContentsId,"ping"),o()}),100)};o()})),showTranslateWindow:e=>{ipcRenderer.sendTo(window.translateWindowWebContentsId,"show",e)}};

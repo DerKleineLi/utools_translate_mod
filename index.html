@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <script>
+    var isPing = false
+    window.utools.onPluginReady(()=>{
+      window.translateWindowWebContentsId = window.utools.createBrowserWindow('hub/index.html', {
+        skipTaskbar: true,
+        alwaysOnTop: true,
+        // resizable: false,
+        minimizable: false,
+        maximizable: false,
+        closable: false,
+        // titleBarStyle: 'hidden',
+        // movable: false,
+        width: 1024,
+        height: 600,
+        frame: false,
+        // show: false,
+        webPreferences: {
+          webviewTag: true,
+          preload: 'hub/preload.js'
+        }
+      })
+    })
+    window.utools.onPluginEnter(({ type, payload })=>{
+      const text = type === 'over' ? payload : (type === 'regex' ? payload : '')
+      window.utools.hideMainWindow(false)
+      if (isPing) {
+        window.services.showTranslateWindow(text)
+      } else {
+        window.services.ping().then(()=>{
+          isPing = true
+          window.services.showTranslateWindow(text)
+        })
+      }
+      window.utools.outPlugin()
+    })
+  </script>
+</body>
+</html>
