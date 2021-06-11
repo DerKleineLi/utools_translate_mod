@@ -1,3 +1,4 @@
+# 本插件为utools官方翻译插件的反编译修改版，主要改动为添加国际版谷歌翻译
 以独立窗口浏览器的形式自由组合以下在线网页翻译
 - 搜狗翻译 https://fanyi.sogou.com/
 - 谷歌翻译CN https://translate.google.cn
